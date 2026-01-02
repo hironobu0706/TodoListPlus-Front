@@ -51,8 +51,8 @@ const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
         setDeadline(dayjs().add(3, 'day'));
     }, [id])
 
-    const createTodo = async () => {
-        await axios.post("http://localhost:8080/api/create",
+    const createTodo = () => {
+        axios.post("http://localhost:8080/api/create",
             {
                 tag,
                 contents,
@@ -62,8 +62,8 @@ const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
         location.href = "";
     }
 
-    const updateTodo = async () => {
-        await axios.put(`http://localhost:8080/api/todolist/update`,
+    const updateTodo = () => {
+        axios.put(`http://localhost:8080/api/todolist/update`,
             {
                 id,
                 tag,
@@ -73,19 +73,6 @@ const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
             });
         location.href = "";
     }
-
-    // モーダルのスタイルを設定
-    const modalStyle = {
-        content: {
-            width: '60%',
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-        },
-    };
 
     const loadTodo = async () => {
         const result = await axios.get(`http://localhost:8080/api/todolist/${id}`);
@@ -112,7 +99,7 @@ const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
             {/* <Box component={Paper} elevation={3} p={4}> */}
             <Box>
                 <Typography variant="h5" gutterBottom>
-                    Todoを追加
+                    {id ? "Todoを更新" : "Todoを追加"}
                 </Typography>
 
                 {/* Grid：縦並びレイアウト */}
@@ -146,6 +133,8 @@ const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
                             onChange={(e) => setStatus(e.target.value)}
                         >
                             <MenuItem value="0">未</MenuItem>
+                            <MenuItem value="1">作業中</MenuItem>
+                            <MenuItem value="8">保留</MenuItem>
                             <MenuItem value="9">完了</MenuItem>
                         </Select>
                     </Grid>
@@ -188,5 +177,18 @@ const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
         </Modal>
     )
 }
+
+// モーダルのスタイルを設定
+const modalStyle = {
+    content: {
+        width: '60%',
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
 
 export default AddTodoModal;

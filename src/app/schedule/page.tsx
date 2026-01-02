@@ -7,7 +7,6 @@ import TextField from '@mui/material/TextField';
 import "./schedule.css";
 
 const Schedule = () => {
-    const dataList = [];
 
     return (
         <div className="todo-wrapper">

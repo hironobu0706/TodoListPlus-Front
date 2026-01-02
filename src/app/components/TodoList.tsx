@@ -15,6 +15,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 // modal
 import AddTodoModal from './modal/AddTodoModal';
 // import EditTodoModal from './modal/old_EditTodoModal';
+import TodoRow from './TodoRow';
 
 const TodoList = () => {
     // タスクと新しいタスク入力を管理するためのuseState
@@ -26,6 +27,7 @@ const TodoList = () => {
     }, [])
 
     const loadTodos = async () => {
+        console.log(new Date());
         try {
             const result = await axios.get("http://localhost:8080/api/getAllTodolist");
             setTasks(result.data);
@@ -44,40 +46,36 @@ const TodoList = () => {
     }
 
     const deleteTodo = async (id: string) => {
+        console.log("deleteTodo id:", id);
         const res = window.confirm('本当に削除しますか？');
         if (res) {
             await axios.get(`http://localhost:8080/api/todolist/delete/${id}`);
             loadTodos();
         }
-    }
+    };
 
     const completeTodo = async (id: string) => {
+        console.log("completeTodo id:", id);
         await axios.get(`http://localhost:8080/api/todolist/complete/${id}`);
         loadTodos();
-    }
-
-
+    };
     // modal
     const [addModalIsOpen, setAddModalIsOpen] = useState(false);
-    // const [EditModalIsOpen] = useState(false); //setEditModalIsOpen
     const openAddModal = () => {
         setTmpEditId('');
         setAddModalIsOpen(true);
     };
     const closeAddModal = () => {
+        console.log("closeAddModal");
         setAddModalIsOpen(false);
         loadTodos();
     };
-    // const closeEditModal = () => {
-    //     setAddModalIsOpen(false);
-    //     loadTodos();
-    // };
-
     const openEditModal = (id: string) => {
+        console.log("openEditModal id:", id);
         setTmpEditId(id);
         setAddModalIsOpen(true);
     };
-
+    const categoryArray: string[] = ["カテゴリ", "内容", "ステータス", "期限","アクション"];
 
     return (
         <div className="todo-wrapper">
@@ -85,46 +83,31 @@ const TodoList = () => {
             <table id="data-table">
                 <tbody>
                     <tr>
-                        <th onClick={() => sortTable(0)} className="todo_tables_th0">
-                            カテゴリ
-                            <span className="sort-arrow"></span>
-                        </th>
-                        <th onClick={() => sortTable(1)} className="todo_tables_th1">
-                            内容
-                            <span className="sort-arrow"></span>
-                        </th>
-                        <th onClick={() => sortTable(2)} className="todo_tables_th2">
-                            ステータス
-                            <span className="sort-arrow"></span>
-                        </th>
-                        <th onClick={() => sortTable(3)} className="todo_tables_th3">
-                            期日
-                            <span className="sort-arrow"></span>
-                        </th>
-                        <th className="todo_tables_th4">アクション</th>
+                        {categoryArray.map((category, key) => {
+                            return (
+                                <th onClick={() => sortTable(key)} className={`todo_tables_th${key}`} key={key}>
+                                    {category}
+                                    <span className="sort-arrow"></span>
+                                </th>
+                            )
+                        })}
                     </tr>
                     {tasks.map((task, index) => {
-
                         return (
-                            <tr key={index}>
-                                <td className="todo_tables_td0">{task.tag}</td>
-                                <td className="todo_tables_td1">{task.contents}</td>
-                                <td className="todo_tables_td2">{task.status === 0 ? "未" : "完了"}</td>
-                                <td className="todo_tables_td3">{task.deadline}</td>
-                                <td className="todo_tables_td4"><Button variant="contained" onClick={() => openEditModal(String(task.id))} sx={{ mr: 2 }}>編集</Button>
-                                    {(() => {
-                                        if (task.status === 0) {
-                                            return <Button variant="outlined" onClick={() => completeTodo(String(task.id))}>完了</Button>;
-                                        } else {
-                                            return <Button variant="contained" color="secondary" onClick={() => deleteTodo(String(task.id))}>削除</Button>;
-                                        }
-                                    })()}</td>
-                            </tr>
+                            <TodoRow
+                                key={index}
+                                task={task}
+                                openEditModal={openEditModal}
+                                deleteTodo={deleteTodo}
+                                completeTodo={completeTodo}
+                            />
                         )
                     })}
                 </tbody>
             </table>
-            <Button variant="contained" onClick={openAddModal}>追加<AddCircleOutlineIcon /></Button>
+            <Button variant="contained" onClick={openAddModal}>
+                追加<AddCircleOutlineIcon />
+            </Button>
             <AddTodoModal
                 addModalIsOpen={addModalIsOpen}
                 closeAddModal={closeAddModal}
