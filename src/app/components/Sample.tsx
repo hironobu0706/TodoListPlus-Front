@@ -16,7 +16,7 @@ const SamplePage =(param: SamplePageProps) => {
 
     return (
         <>
-          -----以下、サンプル2-----
+          -----以下、サンプル21-----
           <br/>
           {test}
           
