@@ -16,11 +16,14 @@ const SamplePage =(param: SamplePageProps) => {
 
     return (
         <>
-          -----以下、サンプル-----
+          -----以下、サンプル2-----
           <br/>
           {test}
+          
           <br/>
-          <Button variant="contained" color="secondary" onClick={() => changeTidle()}>削除</Button>
+          <Button variant="contained" color="secondary" 
+          action={() => {}}
+          onClick={() => changeTidle()}>削除</Button>
         </>
     )
 }
