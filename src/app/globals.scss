@@ -20,48 +20,6 @@ body {
   width:80%;
 }
 
-/* .todo_table{
-  width: 100%;
-  border-spacing: 0;
-  margin-bottom: 5px;
-  
-  border-radius: 10px;
-}
-
-.todo_table,
-.todo_table th,
-.todo_table td{
-  border-collapse: separate;
-  border: 1px solid #000;
-}
-
-.todo_table tr:first-child>*:first-child{
-  border-radius: 10px 0 0 0;
-}
-.todo_table tr:first-child>*:last-child{
-  border-radius: 0 10px 0 0;
-}
-
-.todo_table th {
-  background-color: aqua;
-}
-
-.todo_table th,
-.todo_table td {
-  border-top:0px;
-  border-left:0px;
-}
-.todo_table tr>*:last-child{
-  border-right:0px;
-}
-.todo_table tr:last-child>*{
-  border-bottom:0px;
-}
-
-.todo_table tr>*:first-child{
-  text-align: center;
-} */
-
 .mt20 {
   margin-top: 20px;
 }
@@ -94,15 +52,15 @@ body {
 }
 
 .todo_tables_th0{
-  width: 20%
+  width: 10%
 }
 
 .todo_tables_th1{
-  width: 45%
+  width: 15%
 }
 
 .todo_tables_th2{
-  width: 10%
+  width: 40%
 }
 
 .todo_tables_th3{
@@ -110,14 +68,22 @@ body {
 }
 
 .todo_tables_th4{
+  width: 10%
+}
+
+.todo_tables_th5{
   width: 15%
 }
 
-.todo_tables_td2{
+.todo_tables_td0{
   text-align: center !important;
 }
 
 .todo_tables_td3{
+  text-align: center !important;
+}
+
+.todo_tables_td4{
   text-align: right !important;
 }
 
@@ -160,50 +126,7 @@ body {
 .desc .sort-arrow::before {
   content: none;
 }
-/* @media screen and (max-width: 767px) {
-  .sort-arrow {
-      right: 10px;
-  }
-} */
 
 .float_l {
 	float: left;
 }
-
-/* カレンダー */
-/* #calendar {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-section {
-  margin: 10px;
-}
-
-h1 {
-  font-size: 18px;
-}
-
-table {
-  border-spacing: 0;
-  border-collapse: collapse;
-}
-
-td {
-  border: 1px solid #ddd;
-  padding: 5px;
-  text-align: center;
-}
-
-td:first-child {
-  color: red;
-}
-
-td:last-child {
-  color: royalblue;
-}
-
-td.is-disabled {
-  color: #ccc;
-} */
-/* カレンダー */

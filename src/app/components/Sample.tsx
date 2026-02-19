@@ -7,7 +7,7 @@ interface SamplePageProps {
     test: string;
 }
 
-const SamplePage =(param: SamplePageProps) => {
+const SamplePage = (param: SamplePageProps) => {
     const changeTidle = () => {
         document.title = "実行"
     }
@@ -16,14 +16,14 @@ const SamplePage =(param: SamplePageProps) => {
 
     return (
         <>
-          -----以下、サンプル21-----
-          <br/>
-          {test}
-          
-          <br/>
-          <Button variant="contained" color="secondary" 
-          action={() => {}}
-          onClick={() => changeTidle()}>削除</Button>
+            -----以下、サンプル21-----
+            <br />
+            {test}
+
+            <br />
+            <Button variant="contained" color="secondary"
+                action={() => { }}
+                onClick={() => changeTidle()}>削除</Button>
         </>
     )
 }

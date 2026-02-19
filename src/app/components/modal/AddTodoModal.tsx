@@ -39,12 +39,14 @@ Modal.setAppElement("#todoApp");
 const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
 
     // 入力項目
+    const [priority, setPriority] = useState('0');
     const [tag, setTag] = useState('');
     const [contents, setContents] = useState('');
     const [status, setStatus] = useState('0');
     const [deadline, setDeadline] = useState(dayjs().add(3, 'day'));
 
     useEffect(() => {
+        setPriority('0');
         setTag('');
         setContents('');
         setStatus('0');
@@ -54,6 +56,7 @@ const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
     const createTodo = () => {
         axios.post("http://localhost:8080/api/create",
             {
+                priority,
                 tag,
                 contents,
                 status,
@@ -66,6 +69,7 @@ const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
         axios.put(`http://localhost:8080/api/todolist/update`,
             {
                 id,
+                priority,
                 tag,
                 contents,
                 status,
@@ -76,6 +80,7 @@ const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
 
     const loadTodo = async () => {
         const result = await axios.get(`http://localhost:8080/api/todolist/${id}`);
+        setPriority(result.data.priority);
         setTag(result.data.tag);
         setContents(result.data.contents);
         setStatus(result.data.status);
@@ -104,6 +109,21 @@ const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
 
                 {/* Grid：縦並びレイアウト */}
                 <Grid container spacing={2} direction="column">
+                    {/* 優先度 */}
+                    <Grid item>
+                        <Select
+                            id="demo-simple-select"
+                            value={priority}
+                            //  labelId="status-label"   // ← InputLabel と関連付ける
+                            fullWidth
+                            onChange={(e) => setPriority(e.target.value)}
+                        >
+                            <MenuItem value="0">ー</MenuItem>
+                            <MenuItem value="1">低</MenuItem>
+                            <MenuItem value="2">中</MenuItem>
+                            <MenuItem value="3">高</MenuItem>
+                        </Select>
+                    </Grid>
                     {/* カテゴリ */}
                     <Grid item>
                         <TextField id="outlined-basic" label="カテゴリ" fullWidth variant="outlined" value={tag} onChange={(e) => setTag(e.target.value)} />

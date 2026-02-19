@@ -16,6 +16,7 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import AddTodoModal from './modal/AddTodoModal';
 // import EditTodoModal from './modal/old_EditTodoModal';
 import TodoRow from './TodoRow';
+// import { useRouter } from 'next/navigation';
 
 const TodoList = () => {
     // タスクと新しいタスク入力を管理するためのuseState
@@ -27,7 +28,6 @@ const TodoList = () => {
     }, [])
 
     const loadTodos = async () => {
-        console.log(new Date());
         try {
             const result = await axios.get("http://localhost:8080/api/getAllTodolist");
             setTasks(result.data);
@@ -36,6 +36,7 @@ const TodoList = () => {
             // サンプルデータ
             const sampleData: TodoItemInterface = {
                 id: 999,
+                priority: 0,
                 tag: 'タグ',
                 contents: 'サンプルデータ',
                 status: 0,
@@ -46,7 +47,6 @@ const TodoList = () => {
     }
 
     const deleteTodo = async (id: string) => {
-        console.log("deleteTodo id:", id);
         const res = window.confirm('本当に削除しますか？');
         if (res) {
             await axios.get(`http://localhost:8080/api/todolist/delete/${id}`);
@@ -55,7 +55,6 @@ const TodoList = () => {
     };
 
     const completeTodo = async (id: string) => {
-        console.log("completeTodo id:", id);
         await axios.get(`http://localhost:8080/api/todolist/complete/${id}`);
         loadTodos();
     };
@@ -66,16 +65,14 @@ const TodoList = () => {
         setAddModalIsOpen(true);
     };
     const closeAddModal = () => {
-        console.log("closeAddModal");
         setAddModalIsOpen(false);
         loadTodos();
     };
     const openEditModal = (id: string) => {
-        console.log("openEditModal id:", id);
         setTmpEditId(id);
         setAddModalIsOpen(true);
     };
-    const categoryArray: string[] = ["カテゴリ", "内容", "ステータス", "期限","アクション"];
+    const categoryArray: string[] = ["優先度","カテゴリ", "内容", "ステータス", "期限", "アクション"];
 
     return (
         <div className="todo-wrapper">
