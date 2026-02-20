@@ -54,7 +54,7 @@ const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
     }, [id])
 
     const createTodo = () => {
-        axios.post("http://localhost:8080/api/create",
+        axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/create`,
             {
                 priority,
                 tag,
@@ -66,7 +66,7 @@ const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
     }
 
     const updateTodo = () => {
-        axios.put(`http://localhost:8080/api/todolist/update`,
+        axios.put(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/todolist/update`,
             {
                 id,
                 priority,
@@ -79,7 +79,7 @@ const AddTodoModal = ({ addModalIsOpen, closeAddModal, id }) => {
     }
 
     const loadTodo = async () => {
-        const result = await axios.get(`http://localhost:8080/api/todolist/${id}`);
+        const result = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/todolist/${id}`);
         setPriority(result.data.priority);
         setTag(result.data.tag);
         setContents(result.data.contents);
