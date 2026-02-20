@@ -29,7 +29,7 @@ const TodoList = () => {
 
     const loadTodos = async () => {
         try {
-            const result = await axios.get("http://localhost:8080/api/getAllTodolist");
+            const result = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/getAllTodolist`);
             setTasks(result.data);
         } catch (e) {
             console.log(e);
@@ -49,13 +49,13 @@ const TodoList = () => {
     const deleteTodo = async (id: string) => {
         const res = window.confirm('本当に削除しますか？');
         if (res) {
-            await axios.get(`http://localhost:8080/api/todolist/delete/${id}`);
+            await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/todolist/delete/${id}`);
             loadTodos();
         }
     };
 
     const completeTodo = async (id: string) => {
-        await axios.get(`http://localhost:8080/api/todolist/complete/${id}`);
+        await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/todolist/complete/${id}`);
         loadTodos();
     };
     // modal

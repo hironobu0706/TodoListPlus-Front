@@ -17,7 +17,7 @@ const EditTodoModal = ({ editModalIsOpen, closeEditModal, id }) => {
     const [deadline, setDeadline] = useState('');
 
     const updateTodo = async () => {
-        await axios.put(`http://localhost:8080/api/todolist/update`,
+        await axios.put(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/todolist/update`,
             {
                 id,
                 tag,
@@ -29,7 +29,7 @@ const EditTodoModal = ({ editModalIsOpen, closeEditModal, id }) => {
     }
 
     const loadTodo = async () => {
-        const result = await axios.get(`http://localhost:8080/api/todolist/${id}`);
+        const result = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/todolist/${id}`);
         setTag(result.data.tag);
         setContents(result.data.contents);
         setStatus(result.data.status);
