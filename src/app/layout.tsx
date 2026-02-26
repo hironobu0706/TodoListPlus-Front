@@ -25,7 +25,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <div id="todoApp">
+          {/* <div className="todo-header">ヘッダー</div> */}
+          {children}
+        </div>
       </body>
     </html>
   );
