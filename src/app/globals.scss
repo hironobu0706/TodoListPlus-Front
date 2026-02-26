@@ -8,11 +8,11 @@ body {
 }
 
 .container{
-  width: 80%;
-  min-height: 1200px;
+  width: 1500px;
+  min-height: 600px;
   margin: auto;
   background-color: #FFF;
-  padding-top:20px;
+  padding:20px;
 }
 
 .todo-wrapper{
@@ -129,4 +129,34 @@ body {
 
 .float_l {
 	float: left;
+}
+
+// ここからログイン
+.login-container{
+  width: 800px;
+  margin: auto;
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+}
+
+.buttonContainer {
+  width: 100%;
+  display: flex; /* ボタンを横並びにする */
+  gap: 50px; /* ボタンの間に50pxの間隔をあける */
+  justify-content: center; /* ボタンを中央に配置する */
+  margin-top: 20px;
+}
+
+.nextButton {
+  width:200px;
+  height:80px;
+}
+
+.backButton {
+  background-color: gray!important;
+  width:200px;
+  height:80px;
 }

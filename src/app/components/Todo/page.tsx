@@ -6,16 +6,16 @@ import React, { useEffect, useState } from 'react';
 // import TodoRow from './TodoRow';
 // import TodoAdd from './TodoAdd';
 import axios from 'axios';
-import { TodoItemInterface } from '../types/types'
+import { TodoItemInterface } from '../../types/types'
 import Button from '@mui/material/Button';
 // import Link from "next/link";
-import { sortTable } from '../util/sortTable';
+import { sortTable } from '../../util/sortTable';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 // modal
-import AddTodoModal from './modal/AddTodoModal';
+import AddTodoModal from '../modal/AddTodoModal';
 // import EditTodoModal from './modal/old_EditTodoModal';
-import TodoRow from './TodoRow';
+import TodoRow from '../TodoRow';
 // import { useRouter } from 'next/navigation';
 
 const TodoList = () => {
@@ -75,7 +75,7 @@ const TodoList = () => {
     const categoryArray: string[] = ["優先度", "カテゴリ", "内容", "ステータス", "期限", "アクション"];
 
     return (
-        <div id="todoApp" className="container mx-auto p-8 text-center max-w-2xl">
+        <div className="container mx-auto p-8 text-center max-w-2xl">
             <div className="todo-wrapper">
                 <h1>Todo</h1>
                 <table id="data-table">
