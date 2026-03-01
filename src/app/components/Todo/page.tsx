@@ -15,34 +15,43 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 // modal
 import AddTodoModal from '../modal/AddTodoModal';
 // import EditTodoModal from './modal/old_EditTodoModal';
-import TodoRow from '../TodoRow';
+import TodoRow from './TodoRow';
 // import { useRouter } from 'next/navigation';
+import todoStore from "../../stores/todoStore";
 
 const TodoList = () => {
     // タスクと新しいタスク入力を管理するためのuseState
-    const [tasks, setTasks] = useState<TodoItemInterface[]>([]); // ←※※注意ポイント②※※
+    const [tasks, setTasks] = useState<TodoItemInterface[]>([]);
     const [tmpEditId, setTmpEditId] = useState<string>("");
+
+    // loginTokenの取得
+    const loginToken = todoStore((store) => store.loginToken);
 
     useEffect(() => {
         loadTodos();
     }, [])
 
     const loadTodos = async () => {
+        let result;
         try {
-            const result = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/getAllTodolist`);
+            const userId = todoStore.getState().user_id;
+            result = await axios.get(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/getAllTodolist?user_id=${userId}`);
             setTasks(result.data);
         } catch (e) {
             console.log(e);
-            // サンプルデータ
-            const sampleData: TodoItemInterface = {
-                id: 999,
-                priority: 0,
-                tag: 'タグ',
-                contents: 'サンプルデータ',
-                status: 0,
-                deadline: '2025-01-01'
+        } finally {
+            if (result.data.length === 0) {
+                // サンプルデータ
+                const sampleData: TodoItemInterface = {
+                    id: 999,
+                    priority: 0,
+                    tag: 'タグ',
+                    contents: 'サンプルデータ',
+                    status: 0,
+                    deadline: '2025-01-01'
+                }
+                setTasks([sampleData]);
             }
-            setTasks([sampleData]);
         }
     }
 
@@ -78,6 +87,7 @@ const TodoList = () => {
         <div className="container mx-auto p-8 text-center max-w-2xl">
             <div className="todo-wrapper">
                 <h1>Todo</h1>
+                loginToken: {loginToken}
                 <table id="data-table">
                     <tbody>
                         <tr>

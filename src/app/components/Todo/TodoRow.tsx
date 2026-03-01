@@ -3,8 +3,8 @@
 "use client"
 
 import React, { memo } from "react";
-import { getStatus } from '../util/statusMap';
-import { getPriority } from '../util/priorityMap';
+import { getStatus } from '../../util/statusMap';
+import { getPriority } from '../../util/priorityMap';
 import { Button } from "@mui/material";
 
 interface TodoRowProps {
