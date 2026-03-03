@@ -9,6 +9,11 @@ pnpm dev
 bun dev
 ```
 
+※バックエンドの環境も用意する必要あり。このプロジェクトはフロントのみのため
+以下のリポジトリを参照
+◆TodoListPlus-Back
+https://github.com/hironobu0706/TodoListPlus-Back/
+
 
 http://localhost:3000/
 にアクセスで以下のログイン画面が開く
