@@ -49,31 +49,40 @@ export default function Login() {
     );
 
     const setUserId = todoStore((store) => store.setUserId);
-    
+
     // 次へボタン押下時の関数
     const onNextButton = async () => {
         let response = null;
         // エラーメッセージの初期化
         setLoginErrorMessage("");
-        if(mailAddress === "a@a.a" && password === "password") {
-          navigate('/components/Todo');
+
+        // 開発者用バックドア
+        if (mailAddress === "a@a.a" && password === "password") {
+            navigate('/todoList');
         }
         try {
-            response = await axios.post(`${process.env.NEXT_PUBLIC_REACT_APP_BASE_URL}/api/loginAuth`,
+            response = await axios.post(`${import.meta.env.VITE_APP_BASE_URL}/api/loginAuth`,
                 {
                     mailAddress,
                     password
                 });
         } catch (error) {
-            console.error('Error:', error.response?.status, error.response?.statusText);
+            let message
+            if (error instanceof Error) {
+                message = error.message
+            } else {
+                message = String(error)
+            }
+            reportError({ message })
         }
+        console.log(response?.data)
         // レスポンスの内容に応じてログイン判定を行う
-        if (response.data === "") {
+        if (response?.data === "") {
             setLoginErrorMessage("ログインに失敗しました。メールアドレスとパスワードを確認してください。");
         } else {
             // setLoginToken(response.data.token);
-            setUserId(response.data.user_id);
-            navigate('/components/Todo');
+            setUserId(response?.data.user_id);
+            navigate('/todoList');
         }
     }
 
