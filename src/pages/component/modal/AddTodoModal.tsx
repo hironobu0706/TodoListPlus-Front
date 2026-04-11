@@ -45,8 +45,7 @@ type Props = {
 };
 
 const AddTodoModal = (props:Props) => {
-    const addModalIsOpen = props.addModalIsOpen;
-    const id = props.id;
+    const {addModalIsOpen, closeAddModal, id , loadTodos} = props;
     
     // 入力項目
     const [priority, setPriority] = useState('0');
@@ -54,14 +53,15 @@ const AddTodoModal = (props:Props) => {
     const [contents, setContents] = useState('');
     const [status, setStatus] = useState('0');
     const [deadline, setDeadline] = useState(dayjs().add(3, 'day'));
-    
-    // useEffect(() => {
-    //     setPriority('0');
-    //     setTag('');
-    //     setContents('');
-    //     setStatus('0');
-    //     setDeadline(dayjs().add(3, 'day'));
-    // }, [id])
+
+    // 関数
+    const cleanForm = () => {
+        setPriority('0');
+        setTag('');
+        setContents('');
+        setStatus('0');
+        setDeadline(dayjs().add(3, 'day'));
+    }
 
     const createTodo = async () => {
         const user_id = todoStore.getState().user_id;
@@ -74,8 +74,9 @@ const AddTodoModal = (props:Props) => {
                 status,
                 deadline: deadline.format("YYYY-MM-DD")
             });
-        props.loadTodos();
-        props.closeAddModal();
+        cleanForm();
+        loadTodos();
+        closeAddModal();
     }
 
     const updateTodo = async () => {
@@ -88,8 +89,8 @@ const AddTodoModal = (props:Props) => {
                 status,
                 deadline: deadline.format("YYYY-MM-DD")
             });
-        props.loadTodos();
-        props.closeAddModal();
+        loadTodos();
+        closeAddModal();
     }
 
     const loadTodo = async () => {
@@ -111,7 +112,7 @@ const AddTodoModal = (props:Props) => {
                 // モーダルが開いた後の処理
                 loadTodo();
             }}
-            onRequestClose={props.closeAddModal}
+            onRequestClose={closeAddModal}
             style={modalStyle}
             contentLabel="Example Modal"
         >
@@ -204,7 +205,7 @@ const AddTodoModal = (props:Props) => {
                             </Button>}
                     </Grid>
                     <Grid item>
-                        <Button variant="outlined" onClick={props.closeAddModal}>キャンセル</Button>
+                        <Button variant="outlined" onClick={closeAddModal}>キャンセル</Button>
                     </Grid>
                 </Grid>
             </Box>
