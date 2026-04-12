@@ -112,7 +112,10 @@ const AddTodoModal = (props:Props) => {
                 // モーダルが開いた後の処理
                 loadTodo();
             }}
-            onRequestClose={closeAddModal}
+            onRequestClose={() => {
+                cleanForm();
+                closeAddModal();
+            }}
             style={modalStyle}
             contentLabel="Example Modal"
         >
