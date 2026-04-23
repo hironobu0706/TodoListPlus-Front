@@ -2,22 +2,16 @@
 // "use client" // ←※※注意ポイント①※※
 
 // 必要なライブラリとコンポーネントをインポート
-import React, { useEffect, useState } from 'react';
-// import TodoRow from './TodoRow';
-// import TodoAdd from './TodoAdd';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import type { TodoItemInterface } from '../../types/types';
 import Button from '@mui/material/Button';
-// import Link from "next/link";
-// import { sortTable } from '../../../util/sortTable';
-// import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 // modal
 import AddTodoModal from '../modal/AddTodoModal';
-// import EditTodoModal from './modal/old_EditTodoModal';
-import TodoRow from './TodoRow';
-// import { useRouter } from 'next/navigation';
 import todoStore from "../../stores/todoStore";
+import TodoTable from './TodoTable';
 
 const TodoList = () => {
     // タスクと新しいタスク入力を管理するためのuseState
@@ -85,42 +79,20 @@ const TodoList = () => {
         setTmpEditId(id);
         setAddModalIsOpen(true);
     };
-    const categoryArray: string[] = ["優先度", "カテゴリ", "内容", "ステータス", "期限", "アクション"];
-
+    
     return (
         <div id="todoApp" className="container mx-auto p-8 text-center max-w-2xl">
             <div className="todo-wrapper">
                 <h1>Todo</h1>
-                {/* loginToken: {loginToken} */}
-                <table id="data-table">
-                    <tbody>
-                        <tr>
-                            {categoryArray.map((category, key) => {
-                                return (
-                                    <th className={`todo_tables_th${key}`} key={key}>
-                                    {/* <th onClick={() => sortTable(key)} className={`todo_tables_th${key}`} key={key}> */}
-                                        {category}
-                                        <span className="sort-arrow"></span>
-                                    </th>
-                                )
-                            })}
-                        </tr>
-                        {tasks.map((task, index) => {
-                            return (
-                                <TodoRow
-                                    key={index}
-                                    task={task}
-                                    openEditModal={openEditModal}
-                                    deleteTodo={deleteTodo}
-                                    completeTodo={completeTodo}
-                                />
-                            )
-                        })}
-                    </tbody>
-                </table>
+                <TodoTable
+                    tasks={tasks}
+                    openEditModal={openEditModal}
+                    deleteTodo={deleteTodo}
+                    completeTodo={completeTodo}
+                />
                 <Button variant="contained" onClick={openAddModal}>
                     追加
-                    {/* <AddCircleOutlineIcon /> */}
+                    <AddCircleOutlineIcon />
                 </Button>
                 <AddTodoModal
                     addModalIsOpen={addModalIsOpen}
