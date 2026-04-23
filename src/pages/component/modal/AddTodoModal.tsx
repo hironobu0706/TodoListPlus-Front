@@ -89,6 +89,7 @@ const AddTodoModal = (props:Props) => {
                 status,
                 deadline: deadline.format("YYYY-MM-DD")
             });
+        cleanForm();
         loadTodos();
         closeAddModal();
     }
