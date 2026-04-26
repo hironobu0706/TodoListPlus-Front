@@ -160,3 +160,8 @@ body {
   width:200px;
   height:80px;
 }
+
+.viewUserNameStyles {
+  display: flex;
+  justify-content:flex-end;
+};

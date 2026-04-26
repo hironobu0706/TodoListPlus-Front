@@ -13,11 +13,15 @@ import AddTodoModal from '../modal/AddTodoModal';
 import todoStore from "../../stores/todoStore";
 import TodoTable from './TodoTable';
 
+// mui
+import { Box } from "@mui/material";// , Button, TextField
+
 const TodoList = () => {
     // タスクと新しいタスク入力を管理するためのuseState
     const [tasks, setTasks] = useState<TodoItemInterface[]>([]);
     const [tmpEditId, setTmpEditId] = useState<string>("");
-    const userId = todoStore.getState().user_id;
+    const userId:string = todoStore.getState().user_id;
+    const userName:string = todoStore.getState().user_name;
 
     // ストレージにuserId保存
     // localStorage.setItem('userId', userId);
@@ -33,6 +37,7 @@ const TodoList = () => {
     const loadTodos = async () => {
         let result;
         try {
+            // Todo一覧取得
             result = await axios.get(`${import.meta.env.VITE_APP_BASE_URL}/api/getTodolistWithUserId?user_id=${userId}`);
             setTasks(result.data);
         } catch (e) {
@@ -84,6 +89,7 @@ const TodoList = () => {
         <div id="todoApp" className="container mx-auto p-8 text-center max-w-2xl">
             <div className="todo-wrapper">
                 <h1>Todo</h1>
+                <Box className="viewUserNameStyles">{userName} さん</Box>
                 <TodoTable
                     tasks={tasks}
                     openEditModal={openEditModal}

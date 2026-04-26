@@ -48,7 +48,9 @@ export default function Login() {
         passwordErrorMessage
     );
 
+    // pinia(store)のセッター
     const setUserId = todoStore((store) => store.setUserId);
+    const setUserName = todoStore((store) => store.setUserName);
 
     // 次へボタン押下時の関数
     const onNextButton = async () => {
@@ -81,6 +83,7 @@ export default function Login() {
             setLoginErrorMessage("ログインに失敗しました。メールアドレスとパスワードを確認してください。");
         } else {
             // setLoginToken(response.data.token);
+            setUserName(response?.data.user_name);
             setUserId(response?.data.user_id);
             navigate('/todoList');
         }
