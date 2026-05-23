@@ -52,6 +52,11 @@ export default function Login() {
     const setUserId = todoStore((store) => store.setUserId);
     const setUserName = todoStore((store) => store.setUserName);
 
+    // アカウント作成ボタン押下
+    const onSigninButton = async () => {
+        navigate('/signin');
+    }
+
     // 次へボタン押下時の関数
     const onNextButton = async () => {
         let response = null;
@@ -135,6 +140,12 @@ export default function Login() {
                                 onClick={onNextButton}
                                 disabled={isNextButtonDisabled}>
                                 ログイン
+                            </Button>
+                            <Button
+                                variant="contained"
+                                className="nextButton"
+                                onClick={onSigninButton}>
+                                アカウント作成
                             </Button>
                         </div>
                     </Box>

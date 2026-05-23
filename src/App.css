@@ -7,8 +7,17 @@ body {
   margin: auto;
 }
 
+.header{
+  width: 1300px;
+  height: 50px;
+  margin: auto;
+  background-color: #FFF;
+  padding:20px;
+  cursor: pointer;
+}
+
 .container{
-  width: 1500px;
+  width: 1300px;
   min-height: 600px;
   margin: auto;
   background-color: #FFF;
