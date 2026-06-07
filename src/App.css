@@ -69,7 +69,7 @@ body {
 }
 
 .todo_tables_th2{
-  width: 40%
+  width: 35%
 }
 
 .todo_tables_th3{
@@ -81,7 +81,7 @@ body {
 }
 
 .todo_tables_th5{
-  width: 15%
+  width: 20%
 }
 
 .todo_tables_td0{
@@ -142,7 +142,7 @@ body {
 
 /* // ここからログイン */
 .login-container{
-  width: 800px;
+  width: 400px;
   margin: auto;
 }
 
