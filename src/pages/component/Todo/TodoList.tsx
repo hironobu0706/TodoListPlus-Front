@@ -16,12 +16,15 @@ import TodoTable from './TodoTable';
 // mui
 import { Box } from "@mui/material";// , Button, TextField
 
+
+import { useNavigate } from "react-router-dom"
+
 const TodoList = () => {
     // タスクと新しいタスク入力を管理するためのuseState
     const [tasks, setTasks] = useState<TodoItemInterface[]>([]);
     const [tmpEditId, setTmpEditId] = useState<string>("");
-    const userId:string = todoStore.getState().user_id;
-    const userName:string = todoStore.getState().user_name;
+    const userId: string = todoStore.getState().user_id;
+    const userName: string = todoStore.getState().user_name;
 
     // ストレージにuserId保存
     // localStorage.setItem('userId', userId);
@@ -83,12 +86,17 @@ const TodoList = () => {
     const openEditModal = (id: string) => {
         setTmpEditId(id);
         setAddModalIsOpen(true);
-    };
+    }
     
+    const navigate = useNavigate();
+    const toChatLoomSelect = () => {
+        navigate('/signin');
+    };
+
     return (
         <div id="todoApp" className="container mx-auto p-8 text-center max-w-2xl">
             <div className="todo-wrapper">
-                <h1>Todo</h1>
+                <h1>Todoリスト</h1>
                 <Box className="viewUserNameStyles">{userName} さん</Box>
                 <TodoTable
                     tasks={tasks}
@@ -100,6 +108,11 @@ const TodoList = () => {
                     追加
                     <AddCircleOutlineIcon />
                 </Button>
+                
+                <Button variant="contained" onClick={toChatLoomSelect} disabled>
+                    チャットルームへ
+                </Button>
+
                 <AddTodoModal
                     addModalIsOpen={addModalIsOpen}
                     closeAddModal={closeAddModal}

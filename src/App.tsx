@@ -14,7 +14,7 @@ function App() {
   return (
     <div>
       <div className="header" onClick={toTop}>
-        <h1>Todoアプリ</h1>
+        <h1>Todoアプリ(React + Spring boot + Mysql)</h1>
       </div>
       <Router>
         <Routes>
