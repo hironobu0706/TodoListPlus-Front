@@ -7,26 +7,25 @@ body {
   margin: auto;
 }
 
-.header{
+.header {
   width: 1300px;
-  height: 50px;
   margin: auto;
-  background-color: #FFF;
-  padding:20px;
+  background-color: #99FFFF;
+  padding: 20px;
   cursor: pointer;
 }
 
-.container{
+.container {
   width: 1300px;
   min-height: 600px;
   margin: auto;
   background-color: #FFF;
-  padding:20px;
+  padding: 20px;
 }
 
-.todo-wrapper{
-  margin:auto;
-  width:80%;
+.todo-wrapper {
+  margin: auto;
+  width: 80%;
 }
 
 .mt20 {
@@ -42,7 +41,9 @@ body {
   border-collapse: collapse;
   table-layout: fixed;
 }
-#data-table th, #data-table td {
+
+#data-table th,
+#data-table td {
   border: 1px solid #ddd;
   padding: 12px 15px;
   text-align: left;
@@ -60,39 +61,39 @@ body {
   user-select: none;
 }
 
-.todo_tables_th0{
+.todo_tables_th0 {
   width: 10%
 }
 
-.todo_tables_th1{
+.todo_tables_th1 {
   width: 15%
 }
 
-.todo_tables_th2{
+.todo_tables_th2 {
   width: 30%
 }
 
-.todo_tables_th3{
+.todo_tables_th3 {
   width: 15%
 }
 
-.todo_tables_th4{
+.todo_tables_th4 {
   width: 10%
 }
 
-.todo_tables_th5{
+.todo_tables_th5 {
   width: 20%
 }
 
-.todo_tables_td0{
+.todo_tables_td0 {
   text-align: center !important;
 }
 
-.todo_tables_td3{
+.todo_tables_td3 {
   text-align: center !important;
 }
 
-.todo_tables_td4{
+.todo_tables_td4 {
   text-align: right !important;
 }
 
@@ -114,34 +115,38 @@ body {
   right: 20px;
   transform: translateY(-50%);
 }
+
 .sort-arrow::before,
 .sort-arrow::after {
   content: "";
-  display: inline-block;    
+  display: inline-block;
 }
+
 .sort-arrow::before {
   border-bottom: 5px solid currentColor;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  transform: translate(-50%,-65%);
+  transform: translate(-50%, -65%);
 }
+
 .sort-arrow::after {
   border-top: 5px solid currentColor;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  transform: translate(-50%,-35%);
+  transform: translate(-50%, -35%);
 }
+
 .asc .sort-arrow::after,
 .desc .sort-arrow::before {
   content: none;
 }
 
 .float_l {
-	float: left;
+  float: left;
 }
 
 /* // ここからログイン */
-.login-container{
+.login-container {
   width: 400px;
   margin: auto;
 }
@@ -153,24 +158,29 @@ body {
 
 .buttonContainer {
   width: 100%;
-  display: flex; /* ボタンを横並びにする */
-  gap: 50px; /* ボタンの間に50pxの間隔をあける */
-  justify-content: center; /* ボタンを中央に配置する */
+  display: flex;
+  /* ボタンを横並びにする */
+  gap: 50px;
+  /* ボタンの間に50pxの間隔をあける */
+  justify-content: center;
+  /* ボタンを中央に配置する */
   margin-top: 20px;
 }
 
 .nextButton {
-  width:200px;
-  height:80px;
+  width: 200px;
+  height: 80px;
 }
 
 .backButton {
-  background-color: gray!important;
-  width:200px;
-  height:80px;
+  background-color: gray !important;
+  width: 200px;
+  height: 80px;
 }
 
 .viewUserNameStyles {
   display: flex;
-  justify-content:flex-end;
-};
+  justify-content: flex-end;
+}
+
+;
