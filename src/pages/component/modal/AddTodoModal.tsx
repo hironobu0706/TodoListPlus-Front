@@ -1,6 +1,6 @@
 // クライアントコンポーネント
 "use client" // ←※※注意ポイント①※※
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 // import Button from '@mui/material/Button';

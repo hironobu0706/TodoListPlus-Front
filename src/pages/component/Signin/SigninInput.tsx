@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { Box, Button, TextField } from "@mui/material";
 import { useState } from "react";
 // import todoStore from "../stores/todoStore";
