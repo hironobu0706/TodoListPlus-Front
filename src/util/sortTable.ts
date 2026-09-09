@@ -1,42 +1,46 @@
-// let sortOrder = 1;
+let sortOrder = 1;
 
-// const sortTable = (columnIndex:number) => {
-//     const table = document.getElementById("data-table");
-//     let switching = true;
-//     let currentDirection = (sortOrder === 1) ? "asc" : "desc";
-//     let i;
+const sortTable = (columnIndex:number) => {
+    const table = document.getElementById("data-table");
+    let switching = true;
+    let currentDirection = (sortOrder === 1) ? "asc" : "desc";
+    let i;
 
-//     let ths = table.getElementsByTagName("TH");
-//     for (i = 0; i < ths.length; i++) {
-//         ths[i].classList.remove("asc", "desc");
-//         if (i === columnIndex) {
-//             ths[i].classList.add(currentDirection);
-//         }
-//     }
+    if(table === null){
+        return
+    }
 
-//     while (switching) {
-//         switching = false;
-//         let shouldSwitch = false;
-//         let rows = table.rows;
+    let ths = table.getElementsByTagName("TH");
+    for (i = 0; i < ths.length; i++) {
+        ths[i].classList.remove("asc", "desc");
+        if (i === columnIndex) {
+            ths[i].classList.add(currentDirection);
+        }
+    }
 
-//         for (i = 1; i < (rows.length - 1); i++) {
-//             let x = rows[i].getElementsByTagName("TD")[columnIndex];
-//             let y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+    while (switching) {
+        switching = false;
+        let shouldSwitch = false;
+        let rows = table.rows;
 
-//             if ((sortOrder === 1 && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) ||
-//                 (sortOrder === -1 && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase())) {
-//                 shouldSwitch = true;
-//                 break;
-//             }
-//         }
+        for (i = 1; i < (rows.length - 1); i++) {
+            let x = rows[i].getElementsByTagName("TD")[columnIndex];
+            let y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
 
-//         if (shouldSwitch) {
-//             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-//             switching = true;
-//         }
-//     }
+            if ((sortOrder === 1 && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) ||
+                (sortOrder === -1 && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase())) {
+                shouldSwitch = true;
+                break;
+            }
+        }
 
-//     sortOrder = -sortOrder;
-// }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
 
-// export default sortTable;
+    sortOrder = -sortOrder;
+}
+
+export default sortTable;

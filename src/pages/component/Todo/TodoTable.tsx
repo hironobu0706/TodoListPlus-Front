@@ -6,7 +6,7 @@ import { memo } from 'react';
 // import TodoRow from './TodoRow';
 // import TodoAdd from './TodoAdd';
 // import Link from "next/link";
-// import { sortTable } from '../../../util/sortTable';
+import sortTable from '../../../util/sortTable'
 // import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 // modal
@@ -31,7 +31,7 @@ const TodoTable = memo((todoTableProps: TodoTableProps) => {
                 <tr>
                     {categoryArray.map((category, key) => {
                         return (
-                            <th className={`todo_tables_th${key}`} key={key}>
+                            <th className={`todo_tables_th${key}`} key={key} onClick={() => sortTable(key)}>
                                 {/* <th onClick={() => sortTable(key)} className={`todo_tables_th${key}`} key={key}> */}
                                 {category}
                                 <span className="sort-arrow"></span>
