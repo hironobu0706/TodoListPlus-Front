@@ -1,16 +1,12 @@
 let sortOrder = 1;
 
-const sortTable = (columnIndex:number) => {
-    const table = document.getElementById("data-table");
+const sortTable = (columnIndex: number) => {
+    const table = document.getElementById("data-table") as HTMLTableElement;
     let switching = true;
-    let currentDirection = (sortOrder === 1) ? "asc" : "desc";
+    const currentDirection = (sortOrder === 1) ? "asc" : "desc";
     let i;
 
-    if(table === null){
-        return
-    }
-
-    let ths = table.getElementsByTagName("TH");
+    const ths = table.getElementsByTagName("TH");
     for (i = 0; i < ths.length; i++) {
         ths[i].classList.remove("asc", "desc");
         if (i === columnIndex) {
@@ -21,11 +17,11 @@ const sortTable = (columnIndex:number) => {
     while (switching) {
         switching = false;
         let shouldSwitch = false;
-        let rows = table.rows;
+        const rows = table.rows;
 
         for (i = 1; i < (rows.length - 1); i++) {
-            let x = rows[i].getElementsByTagName("TD")[columnIndex];
-            let y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+            const x = rows[i].getElementsByTagName("TD")[columnIndex];
+            const y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
 
             if ((sortOrder === 1 && x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) ||
                 (sortOrder === -1 && x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase())) {
@@ -35,7 +31,7 @@ const sortTable = (columnIndex:number) => {
         }
 
         if (shouldSwitch) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            rows[i].parentNode!.insertBefore(rows[i + 1], rows[i]);
             switching = true;
         }
     }
