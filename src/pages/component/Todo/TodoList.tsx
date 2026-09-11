@@ -26,7 +26,7 @@ const TodoList = () => {
 
     const navigate = useNavigate();
     // ログイン情報を持っていなければログイン画面に遷移させる
-    if (!!!userName){
+    if (!userName){
         navigate('/');
     }
 
