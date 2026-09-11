@@ -7,6 +7,7 @@ import axios from 'axios';
 import type { TodoItemInterface } from '../../types/types';
 import Button from '@mui/material/Button';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { useNavigate } from "react-router-dom"
 
 // modal
 import AddTodoModal from '../modal/AddTodoModal';
@@ -16,15 +17,18 @@ import TodoTable from './TodoTable';
 // mui
 import { Box } from "@mui/material";// , Button, TextField
 
-
-import { useNavigate } from "react-router-dom"
-
 const TodoList = () => {
     // タスクと新しいタスク入力を管理するためのuseState
     const [tasks, setTasks] = useState<TodoItemInterface[]>([]);
     const [tmpEditId, setTmpEditId] = useState<string>("");
     const userId: string = todoStore.getState().user_id;
     const userName: string = todoStore.getState().user_name;
+
+    const navigate = useNavigate();
+    // ログイン情報を持っていなければログイン画面に遷移させる
+    if (!!!userName){
+        navigate('/');
+    }
 
     // ストレージにuserId保存
     // localStorage.setItem('userId', userId);
@@ -88,7 +92,6 @@ const TodoList = () => {
         setAddModalIsOpen(true);
     }
     
-    const navigate = useNavigate();
     const toChatLoomSelect = () => {
         navigate('/signin');
     };
