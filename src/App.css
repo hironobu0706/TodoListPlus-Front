@@ -10,7 +10,8 @@ body {
 .header {
   width: 1300px;
   margin: auto;
-  background-color: #99FFFF;
+  background-color: #007bff;
+  color: #FFF;
   padding: 20px;
   cursor: pointer;
 }
